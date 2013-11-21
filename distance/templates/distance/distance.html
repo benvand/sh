@@ -20,6 +20,7 @@
                 <div style="width:50%; margin-left: 20%" ><input type="submit" value="Go!"></div>
             </form>
         </div>
+{#    template logic below determines whether to show lat/lng text or postcode#}
     {% if pcode %}
         Judging from your postcode ({{ pcode }}) you're {{ pcodeDist }} kms away
     {% endif %}

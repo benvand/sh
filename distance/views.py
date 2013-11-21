@@ -114,7 +114,16 @@ class DistanceMixin():
 
 class Distance(View, DistanceMixin):
     """
-
+    This class handles the rendering of the only page of the app
+    In the GET request we use the api method to make a uess at the location
+    using the ip attached to the request (see DistanceMixin.getIP).
+    We also pass the forms in forms.py to the renderer so they're available
+    in the template.
+    The POST is a little more interesting but still fairly simple.
+    We do the same with the IP as in the GET request then descend into the data
+    that was posted from the form.
+    Finally we package up the context and pass to the renederer along with the
+    template
     """
     def get(self, request, *args, **kwargs):
         """
@@ -164,6 +173,11 @@ class Distance(View, DistanceMixin):
 
 
 class BaseApiView(View, DistanceMixin):
+    """
+    This base class contains the standard GET method that displays self.apiHelp
+    It also inherits View and DistanceMixin which are used to supply the
+    delivery and api methods.
+    """
     apiHelp = ""
 
     def get(self, request, *args, **kwargs):
