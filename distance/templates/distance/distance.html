@@ -1,0 +1,33 @@
+{% extends "base_sharehood.html" %}
+
+{% block distance %}
+    <div style = "text-align: left; font-size: 16px ">
+
+        <p>
+            <br>My guess judging from your IP ({{ ip }}) is: {{ ipDist }} kms</br>
+            <br>If you'd like to narrow it down try the forms below:</br>
+        </p>
+
+        <div style="width:50%;float:left;">
+            <form method="post" action="">
+                <p>{{ PostcodeForm }}</p>
+                <div style="width:50%; margin-left: 20%" ><input type="submit" value="Go!" ></div>
+            </form>
+        </div>
+        <div style="width:50%;float:right;">
+            <form method="post" action="">
+                <p>{{ LLForm.as_table }}</p>
+                <div style="width:50%; margin-left: 20%" ><input type="submit" value="Go!"></div>
+            </form>
+        </div>
+    {% if pcode %}
+        Judging from your postcode ({{ pcode }}) you're {{ pcodeDist }} kms away
+    {% endif %}
+    {% if lat and lng %}
+        Judging from your latitude ({{ lat }}) and longitude ({{ lng }})
+        I'd say you're {{ llDist }} kms away
+    {% endif %}
+
+
+    <div>
+{% endblock %}
